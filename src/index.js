@@ -36,7 +36,7 @@ class App extends React.Component{
         // state must be initialized when a component is created
         // we initialized our state object by creating a javascript object, lat for lattitude
         // this is the only time we do direct assignment to this.state
-        this.state = { lat: null};
+        this.state = { lat: null, errorMessage: ''};
         // the render() method will be called very frequently
         // we don't want to use the getCurrentPosition function so many times like this
         // so we replace the method into constructor
@@ -46,13 +46,26 @@ class App extends React.Component{
                 // state can only be updated using the function 'setState'
                 this.setState({ lat: position.coords.latitude});
             },
-            (err) => console.log(err)
+            (err) => {
+                // use setState to handle the error message
+                this.setState({ errorMessage: err.message});
+            }
         );
     }
 
     // React says we have to define render in every component!
     render(){
-        return <div>Latitude: {this.state.lat}</div>;
+        // use if statement to handle conditional rendering content
+        // we can use if else too
+        if(this.state.errorMessage && !this.state.lat){
+            return <div>Error: {this.state.errorMessage}</div>;
+        }
+
+        if(!this.state.errorMessage && this.state.lat){
+            return <div>Latitude: {this.state.lat}</div>;
+        }
+
+        return <div>Loading!</div>;        
     };
 }
 
