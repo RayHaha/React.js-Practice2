@@ -35,16 +35,24 @@ class App extends React.Component{
         super(props);
         // state must be initialized when a component is created
         // we initialized our state object by creating a javascript object, lat for lattitude
+        // this is the only time we do direct assignment to this.state
         this.state = { lat: null};
+        // the render() method will be called very frequently
+        // we don't want to use the getCurrentPosition function so many times like this
+        // so we replace the method into constructor
+        window.navigator.geolocation.getCurrentPosition(
+            (position) => {
+                // use the setState function to update the state
+                // state can only be updated using the function 'setState'
+                this.setState({ lat: position.coords.latitude});
+            },
+            (err) => console.log(err)
+        );
     }
 
     // React says we have to define render in every component!
     render(){
-        window.navigator.geolocation.getCurrentPosition(
-            (position) => console.log(position),
-            (err) => console.log(err)
-        );
-        return <div>Latitude: </div>;
+        return <div>Latitude: {this.state.lat}</div>;
     };
 }
 
