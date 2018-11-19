@@ -29,15 +29,18 @@ const App = () => {
 class App extends React.Component{
     // constructor function is going to be called automatically and instantly before anything else
     // so it's a very good location for us to initialize our state
-    constructor(props){
-        // it's required in constructor , you have to call super first
-        // to make sure that the parent(React.Component) constructor function get called
-        super(props);
-        // state must be initialized when a component is created
-        // we initialized our state object by creating a javascript object, lat for lattitude
-        // this is the only time we do direct assignment to this.state
-        this.state = { lat: null, errorMessage: ''};
-    }
+    // constructor(props){
+    //     // it's required in constructor , you have to call super first
+    //     // to make sure that the parent(React.Component) constructor function get called
+    //     super(props);
+    //     // state must be initialized when a component is created
+    //     // we initialized our state object by creating a javascript object, lat for lattitude
+    //     // this is the only time we do direct assignment to this.state
+    //     this.state = { lat: null, errorMessage: ''};
+    // }
+    // the other way to initialize State,
+    // it'll do the exactly same thing after the compile of babel
+    state = { lat: null, errorMessage: ''};
 
     // it's a part of lifecycle method
     componentDidMount(){
