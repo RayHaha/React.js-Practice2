@@ -37,9 +37,16 @@ class App extends React.Component{
         // we initialized our state object by creating a javascript object, lat for lattitude
         // this is the only time we do direct assignment to this.state
         this.state = { lat: null, errorMessage: ''};
+    }
+
+    // it's a part of lifecycle method
+    componentDidMount(){
         // the render() method will be called very frequently
         // we don't want to use the getCurrentPosition function so many times like this
-        // so we replace the method into constructor
+        // so we replace the method into constructor (x)
+        // now we replace the method into componentDidMount method
+        // we use constructor to do one-time setup, componentDidMount to load data
+        // in this way, it's easier to recognize what the code is going to do
         window.navigator.geolocation.getCurrentPosition(
             (position) => {
                 // use the setState function to update the state
@@ -50,6 +57,9 @@ class App extends React.Component{
                 // use setState to handle the error message
                 this.setState({ errorMessage: err.message});
             }
+            // the same as 
+            // position => this.setState({ lat: position.coords.latitude}),
+            // err => this.setState({ errorMessage: err.message})
         );
     }
 
