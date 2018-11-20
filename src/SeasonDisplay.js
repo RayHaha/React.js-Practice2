@@ -1,13 +1,16 @@
+// import SeasonDisplay.css
+import './SeasonDisplay.css';
+
 import React from 'react';
 
 // use config object to make the code cleaner
 const seasonConfig = {
     summer: {
-        text: "Let's hit the beach!",   // the same as 'Let\'s hit the beach!'
+        text: "Let's hit the beach!",   // one way to use '
         iconName: 'sun'
     },
     winter: {
-        text: 'Burr it is cold!',
+        text: 'Burr, it\'s chilly!',     // another way to use '
         iconName: 'snowflake'
     }
 }
@@ -42,12 +45,16 @@ const SeasonDisplay = (props) => {
     const { text, iconName} = seasonConfig[season];
 
     return (
-        <div>
+        // use the class name similar to the class/constant/function make it easier to apply CSS
+        // season-display get the css properties
+        <div className={`season-display ${season}`}>
             {/** use the icon in semantic-ui.com by i tag */}
             {/** and it's ES2015 way to get the value whatever the iconName is and throw it into the string */}
-            <i className={`${iconName} icon`}/>
+            {/** massive make the icon bigger */}
+            {/** icon-left/right get the css properties */}
+            <i className={`icon-left massive ${iconName} icon`}/>
             <h1>{text}</h1>
-            <i className={`${iconName} icon`}/>
+            <i className={`icon-right massive ${iconName} icon`}/>
         </div>
     );
 }
