@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 // refactor the function component to class component
 // because that .getCurrentPosition cost a lot of time
@@ -79,7 +80,8 @@ class App extends React.Component{
             return <SeasonDisplay lat={this.state.lat} />;
         }
 
-        return <div>Loading!</div>;        
+        // use Spinner.js here
+        return <Spinner message="Please accept location request" />;        
     };
 }
 
