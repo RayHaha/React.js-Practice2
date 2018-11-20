@@ -68,8 +68,10 @@ class App extends React.Component{
         );
     }
 
-    // React says we have to define render in every component!
-    render(){
+    // use the helper function to avoid conditionals in render()
+    // by this way it's easier for us to solve the problem like this example
+    // if we don't use the helper function, we need to duplicate three border red div to every return
+    renderContent(){
         // use if statement to handle conditional rendering content
         // we can use if else too
         if(this.state.errorMessage && !this.state.lat){
@@ -81,7 +83,12 @@ class App extends React.Component{
         }
 
         // use Spinner.js here
-        return <Spinner message="Please accept location request" />;        
+        return <Spinner message="Please accept location request" />;  
+    }
+
+    // React says we have to define render in every component!
+    render(){
+        return <div className="border red">{this.renderContent()}</div>;
     };
 }
 
